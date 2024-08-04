@@ -72,7 +72,10 @@ class User(db.Model):
 
     @staticmethod
     def get_user(username):
+        print(str(vuln));
+        print(username);
         if vuln: 
+            print("vuln = true");
             user_query = f"SELECT * FROM users WHERE username = '{username}'"
             print(user_query)
             query = vuln_conn.cursor().executescript(user_query)
@@ -82,6 +85,7 @@ class User(db.Model):
             else:
                 fin_query = None
         else:
+            print("vuln = false");
             fin_query = User.query.filter_by(username=username).first()
         return fin_query
 
